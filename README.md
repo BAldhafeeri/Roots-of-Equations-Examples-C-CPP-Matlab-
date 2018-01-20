@@ -33,4 +33,30 @@ fprintf('root of equation is %.8f\n', x)
 The resut is   
 `root of equation is 0.56714329`
 
+The C code is
 
+```C
+#include <stdio.h>
+#include <math.h>   /* expf() */
+
+int main(void)
+{
+   int i;
+   #define iterNum 10
+   float x,f,dfdx;
+   x=0.0f;
+	
+   for(i=0; i <= iterNum; ++i){
+         f =  expf(-x) - x;
+      dfdx = -expf(-x) - 1.0f;
+        x += -f/dfdx;
+   }
+   
+   printf("root of equation is %.8f\n", x);
+	
+   return 0;
+}
+```
+Compiling the code with `gcc -std=c99 main.c -o roots` and run it `./roots`. The resut is 
+
+`root of equation is 0.56714326`
